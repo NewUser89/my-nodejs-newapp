@@ -5,16 +5,17 @@ phases:
         runtime-versions:
             nodejs: latest
         commands:
-             - echo "installing something"
+            - echo "installing something"
     pre_build:     
         commands:
-             - echo "we are in the prebuild phase"
+            - echo "we are in the prebuild phase"
     build:
         commands:
-              - echo "we are in the build block"
-              - echo "we will rum some test"
-              - grep -fq "Congratulations" index.html
-              
+            - echo "we are in the build block"
+            - echo "we will run some tests"
+            - ls -la
+            - cat index.html || echo "index.html not found"
+            - if [ -f index.html ]; then grep -fq "Congratulations" index.html; else echo "index.html not found"; fi
     post_build:
         commands:
-              - echo "we are in the post build phase"
+            - echo "we are in the post build phase"
